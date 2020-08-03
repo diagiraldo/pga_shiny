@@ -1,0 +1,68 @@
+---
+title: "My Shiny App - PGA"
+author: "Diana Giraldo"
+date: "August 3, 2020"
+output:
+  ioslides_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+setwd("~/Dropbox/Coursera/data_products/")
+library(ggplot2)
+```
+
+## Peer-graded Assignment
+The shiny app I made generates a cloud of random points in a plane 
+following 2 Gaussian distributions.
+
+You can choose if you want to move the existing cloud or if you want to generate a new one by cheching the "Dynamic seed" checkbox,
+if this box is unchecked:
+```{r, echo=TRUE, message=FALSE}
+set.seed(123)
+```
+
+## Parameters
+ - Number of points `n`
+ - Mean x `mu_x`
+ - Mean y `mu_y`
+ - Standard deviation x `sd_x`
+ - Standard deviation y `sd_y`
+
+Fixing these parameters:
+```{r, echo=TRUE, message=FALSE}
+n <- 1000
+mu_x <- 1
+mu_y <- 0
+sd_x <- 0.5
+sd_y <- 1.5
+```
+
+## Example
+
+A data frame of random points is generated:
+```{r, echo=TRUE, message=FALSE}
+D <- data.frame(x = rnorm(n, mean = mu_x, sd = sd_x),
+                     y = rnorm(n, mean = mu_y, sd = sd_y))
+```
+
+The app runs this code: 
+```{r, echo=TRUE, eval=FALSE, message=FALSE, warning = FALSE}
+plot <- ggplot(D, aes(x,y)) + 
+    geom_point(size = 0.25, colour = "grey30") + 
+    theme_bw() + xlim(-5,5) + ylim(-5,5)
+      plot
+```
+
+## Plot
+And produces this plot:
+```{r, message=FALSE, warning = FALSE}
+plot <- ggplot(D, aes(x,y)) + geom_point(size = 0.25, colour = "grey30") + theme_bw() +
+          xlim(-5,5) + ylim(-5,5)
+      plot
+```
+
+
+
+
+
